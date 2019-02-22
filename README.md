@@ -1,14 +1,14 @@
 # Simple Text Annotator App in Flask
 
-This flask app is a simple personal project that is meant to make it easier to label/annotate text data for creating datasets for supervised machine learning.
+This flask app is a simple personal project (done by Andrew Tan[@a-tanman] and myself) that is meant to make it easier to label/annotate text data for creating datasets for supervised machine learning.
 
 Based on a flask-bootstrap template by Mark Brinkmann (https://pythonhosted.org/Flask-Bootstrap/).
 
 ### Installing Dependences
 
-Install dependences from requirements.txt to a folder on your *PYTHONPATH*
+Install dependences from requirements.txt using 
 
-If you currently do not have flask, install it as well based on the instructions above.
+```pip3 install -r requirements.txt```
 
 ### Running
 
