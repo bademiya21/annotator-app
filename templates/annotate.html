@@ -1,0 +1,51 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="wrapper">
+    <div class="container" style="background:#BFC9CA; width:100%">
+        <h4 class="text-center"><b>Click label buttons at bottom of page to annotate data. This will tag a single label to each row of data.</b><br/> 
+        If you need to scroll down to click on the labels, reduce the zoom of the webpage using the browser such that the labels and the additional labels option can be seen.</h4>
+    </div>
+
+    <div class="jumbotron1">
+        <h5 class="block-with-text"> {{ text_string }} </h5>
+    </div>
+
+    <div class="container" style="background:#BFC9CA; width:100%">
+        <h5 class="text-center"><b>Progress: {{ length }} / {{ total_length }} rows.</b></h5>
+        {% if length > 1 %}
+        <h5 class="text-center">If you wish to download the intermediate labeled data, click the button below.</h5>
+        <a href="{{ url_for('.return_files_tut', filename = res_filename) }}">
+            <div class="text-center">
+                <button class='btn btn-default'>Download</button>
+            </div>
+        </a>
+        {% endif %}
+    </div>
+
+    <div class="container">
+
+        <div class="text-center">
+            <h4 class="text-center"><b>Labels</b></h4>
+            {{ form.crsf_token }}
+
+
+            {{ wtf.quick_form(form)}}
+
+            <br>
+
+            {{ add_label_form.crsf_token }}
+            {{ wtf.quick_form(add_label_form)}}
+
+            <br>
+
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}

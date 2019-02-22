@@ -1,0 +1,45 @@
+{# This simple template derives from ``base.html``. See ``base.html`` for
+more information about template inheritance. #}
+{%- extends "base.html" %}
+
+{# Loads some of the macros included with Flask-Bootstrap. We are using the
+utils module here to automatically render Flask's flashed messages in a
+bootstrap friendly manner #}
+{% import "bootstrap/utils.html" as utils %}
+
+
+{# Inside the ``content`` is where you should place most of your own stuff.
+This will keep scripts at the page end and a navbar you add on later
+intact. #}
+{% block content %}
+<div class="container">
+  {%- with messages = get_flashed_messages(with_categories=True) %}
+  {%- if messages %}
+  <div class="row">
+    <div class="col-md-12">
+      {{utils.flashed_messages(messages)}}
+    </div>
+  </div>
+  {%- endif %}
+  {%- endwith %}
+  <div class="jumbotron">
+    <h1>Welcome to Text-Annotator</h1>
+    <p>This application helps you label your text data to prepare training data for supervised machine learning.</p>
+    <p>Key Features:
+      <ul>
+        <li>Allows user to upload .csv or Excel files and view samples of the data</li>
+        <li>Users can select one column of interest to create label for this column. Only one label can be tagged per
+          row.</li>
+        <li>A separate .csv file is created with the results of the labelling. This file is written to each time you
+          label one row.</li>
+        <li>You have the option to add more labels as you progress.</li>
+        <li>If you close the program and start labelling again later, ensure that the data file and username are
+          identical to before, and you should be able to continue from where you last stopped</li>
+        <li>Once the entire data has been labelled, the user will be presented with links to download the labelled data
+          and to delete all files from the server. Remember to download first before deleting the files!</li>
+      </ul>
+    </p>
+
+  </div>
+</div>
+{% endblock %}

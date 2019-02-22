@@ -1,0 +1,7 @@
+Flask
+Flask-Bootstrap
+Flask-Debug
+flask-nav
+Flask-WTF
+xlrd
+pandas
