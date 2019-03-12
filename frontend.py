@@ -160,6 +160,9 @@ def annotate_data():
                 # Label row with button clicked 
                 row[col_label] = key
 
+        if not os.path.exists(os.path.dirname(res_file)):
+            os.makedirs(os.path.dirname(res_file))
+        
         with open(res_file, 'a', encoding="utf-8", newline='') as f:
             if session['counter'] == 0:
                 print_header = True
