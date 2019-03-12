@@ -16,7 +16,7 @@ From main folder directory, you can run the app on port 5000 with:
 
 ```python application.py```
 
-Some mock data is found in the ```/data``` folder for you to test out.
+Some mock data is found in the main folder for you to test out.
 
 ### Key Features
 
