@@ -54,7 +54,7 @@ def upload_data():
         # Save file into disk for it to be read later - this is better than
         # reading it into memory especially for large files, note that a data
         # folder must be created
-        data_dir = os.path.join(current_app.root_path, 'data')
+        data_dir = os.path.join(current_app.root_path, 'uploaded-data')
         if not os.path.exists(data_dir):
             os.makedirs(data_dir)
         f.save(os.path.join(data_dir, filename))
@@ -76,7 +76,7 @@ def display_data():
 
     # Filenames are passed as HTTP requests
     filename = request.args['f_name']
-    file_path = os.path.join(current_app.root_path, 'data', filename)
+    file_path = os.path.join(current_app.root_path, 'uploaded-data', filename)
 
     # Use lru_cache function to prevent multiple file I/O
     df = read_df(file_path)
@@ -121,7 +121,7 @@ def annotate_data():
     labels = request.args['labels'].split(';')
     
     # Note that a 'data' folder must be created
-    file_path = os.path.join(current_app.root_path, 'data', filename)
+    file_path = os.path.join(current_app.root_path, 'uploaded-data', filename)
     res_filename = filename_sav + '_' + col_label + \
             '_' + session['user_name'] + '.csv'
     res_file = os.path.join(current_app.root_path, 'data', res_filename)
@@ -199,7 +199,7 @@ def delete_files():
     orig_filename  = request.args.get('orig_filename', None)
     filename  = request.args.get('filename', None)
     try:
-        saved_path_orig = os.path.join(current_app.root_path, 'data', orig_filename)
+        saved_path_orig = os.path.join(current_app.root_path, 'uploaded-data', orig_filename)
         os.remove(saved_path_orig)
         saved_path = os.path.join(current_app.root_path, 'data', filename)
         os.remove(saved_path)
