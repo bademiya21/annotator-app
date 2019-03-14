@@ -4,7 +4,7 @@ from flask_bootstrap import Bootstrap
 from frontend import frontend
 from nav import nav
 
-application = app = Flask('__name__')
+application = app = Flask(__name__)
 
 Bootstrap(app)
 

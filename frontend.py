@@ -184,7 +184,7 @@ def annotate_data():
     # Show text for labelling within jumbotron
     text = df.at[session['counter'], colname]
 
-    return render_template('annotate.html', form=form, add_label_form = add_label_form, text_string=text, length=session['counter']+1, total_length=df.shape[0], res_filename=res_filename)
+    return render_template('annotate.html', form=form, add_label_form = add_label_form, text_string=text, length=session['counter']+1, total_length=df.shape[0], res_filename=res_filename, orig_filename=filename)
 
 @frontend.route('/return_file', methods=['GET', 'POST'])
 def return_files_tut():

@@ -23,6 +23,12 @@
                 <button class='btn btn-default'>Download</button>
             </div>
         </a>
+        <h5 class="text-center">If you wish to delete the files, click the button below.</h5>
+        <a href="{{ url_for('.delete_files', orig_filename = orig_filename, filename = res_filename) }}">
+            <div class="text-center">
+                <button class='btn btn-default'>Delete</button>
+            </div>
+        </a>
         {% endif %}
     </div>
 
