@@ -30,7 +30,7 @@ Once the virtual environment has been activated, install the dependencies from r
 As the app contains a user-registration feature, the user database needs to be initialized. Create the migration repository for annotator_app by running *flask db init* in the terminal window. You should see something like below:
 
 ```
-(venv) $ flask db init\
+(textannoenv) $ flask db init\
   Creating directory /home/<user>/annotator_app/migrations ... done\
   Creating directory /home/<user>/annotator_app/migrations/versions ... done\
   Generating /home/<user>/annotator_app/migrations/alembic.ini ... done\
@@ -45,7 +45,7 @@ After you run this command, you will find a new migrations directory, with a few
 
 With the migration repository in place, create the first database migration, which will include the users table that maps to the User database model. In this case, since there is no previous database, the automatic migration will add the entire User model to the migration script. The *flask db migrate* sub-command generates these automatic migrations:
 
-```(venv) $ flask db migrate -m "users table"\
+```(textannoenv) $ flask db migrate -m "users table"\
 INFO  [alembic.runtime.migration] Context impl SQLiteImpl.\
 INFO  [alembic.runtime.migration] Will assume non-transactional DDL.\
 INFO  [alembic.autogenerate.compare] Detected added table 'user'\
@@ -58,13 +58,13 @@ INFO  [alembic.autogenerate.compare] Detected added index 'ix_user_username' on 
 
 Before running, Flask needs to be told how to import it, by setting the FLASK_APP environment variable:
 
-```(venv) $ export FLASK_APP=annotator_app.py```
+```(textannoenv) $ export FLASK_APP=annotator_app.py```
 
 If you are using Microsoft Windows, use set instead of export in the command above.
 
 You can run the app with the following command:
 
-```(venv) $ flask run```
+```(textannoenv) $ flask run```
 
 Open up your web browser and enter the following URL in the address field:
 
