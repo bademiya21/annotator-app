@@ -2,7 +2,7 @@
 
 This flask app is a simple personal project (done by Andrew Tan[@a-tanman] and myself) that is meant to make it easier to label/annotate text data for creating datasets for supervised machine learning.
 
-Based on a flask-bootstrap template by Mark Brinkmann (https://pythonhosted.org/Flask-Bootstrap/). Most of the other features have been adapted from [Miguel's blog](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world). This app has been developed in a virtual environment in Windows and deployed in AWS using an Ubuntu MI.
+Based on a flask-bootstrap template by Mark Brinkmann (https://pythonhosted.org/Flask-Bootstrap/). Most of the other features have been adapted from [Miguel's blog](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world). This app has been developed in a virtual environment in Windows and deployed in [AWS using an Ubuntu MI](http://www.annotate-text.tk/).
 
 ### Installing Dependences
 
