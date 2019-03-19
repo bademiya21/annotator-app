@@ -39,7 +39,14 @@ intact. #}
           and to delete all files from the server. Remember to download first before deleting the files!</li>
       </ul>
     </p>
-
+    {% if current_user.is_anonymous %}
+    <a href="{{ url_for('.login') }}"><button class='btn btn-default'>Login</button></a>
+    <p>If you do not have an account yet, click on the button below:</p>
+    <a href="{{ url_for('.register') }}"><button class='btn btn-default'>Register</button></a>
+    {% else %}
+    <a href="{{ url_for('.upload_data') }}"><button class='btn btn-default'>Start</button></a>
+    {% endif %}
+    
   </div>
 </div>
 {% endblock %}
