@@ -9,6 +9,7 @@ Based on a flask-bootstrap template by Mark Brinkmann (https://pythonhosted.org/
 This project requires Python 3x to be installed in the system. If your operating system does not provide you with a Python package, you can download an installer from the [Python official website](http://python.org/download/).
 
 This app is best used in a virtual environment. To create one in the project directory, type the following command in the terminal:
+
 ```$ python3 -m venv textannoenv```
 
 Note that in some operating systems you may need to use python3 instead of python in the command above.
