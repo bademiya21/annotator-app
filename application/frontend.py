@@ -86,6 +86,7 @@ def reset_password(token):
 
 @frontend.route('/logout')
 def logout():
+    #session.pop(current_user.username)
     logout_user()
     return redirect(url_for('.index'))
 
@@ -134,7 +135,7 @@ def upload_data():
     if form.validate_on_submit():
 
         f = form.sample_file.data
-        filename = secure_filename(f.filename)
+        filename = os.path.splitext(secure_filename(f.filename))[0] + "_" + current_user.username + os.path.splitext(secure_filename(f.filename))[1]
 
         # Save file into disk for it to be read later - this is better than
         # reading it into memory especially for large files, note that a data
@@ -177,10 +178,10 @@ def display_data():
 
     if form.validate_on_submit():
         if (form.annotate.data):  # Check if SubmitField is clicked for 'sample' or 'annotate'
-            session.clear()
+            #session.clear()
             # This counter is needed to reference the pandas dataframe index
-            session['counter'] = 0
-            session['user_name'] = current_user.username
+            session[current_user.username] = 0
+            #session['counter'] = 0
 
             # Pass filename, colnames, and labels to annotate data view
             return redirect(url_for('.annotate_data', f_name=filename, colname=form.sel_col.data, labels=form.labels.data))
@@ -205,8 +206,7 @@ def annotate_data():
 
     # Note that a 'data' folder must be created
     file_path = os.path.join(current_app.root_path, 'uploaded-data', filename)
-    res_filename = filename_sav + '_' + col_label + \
-        '_' + session['user_name'] + '.csv'
+    res_filename = filename_sav + '_' + col_label + '.csv'
     res_file = os.path.join(current_app.root_path, 'data', res_filename)
     df = read_df(file_path)
 
@@ -214,9 +214,9 @@ def annotate_data():
     # continue from there, so users can continue labelling even if they close
     # their computer Cannot use cached function for reading DF because file is
     # constantly updated
-    if (session['counter'] == 0) and os.path.isfile(res_file):
+    if (session[current_user.username] == 0) and os.path.isfile(res_file):
         res_df = read_df(res_file)
-        session['counter'] = res_df.index[-1] + 1
+        session[current_user.username] = res_df.index[-1] + 1
 
     # Create class AnnotateForm and dynamically add label buttons
     class AnnotateForm(FlaskForm):
@@ -237,7 +237,7 @@ def annotate_data():
     # This is executed if the user clicks on one of the label buttons
     if form.validate_on_submit() and label_clicked:
 
-        row = df.iloc[[session['counter']]]
+        row = df.iloc[[session[current_user.username]]]
         for key, value in form.data.items():
             if value is True:
                 # Label row with button clicked
@@ -247,15 +247,15 @@ def annotate_data():
             os.makedirs(os.path.dirname(res_file))
 
         with open(res_file, 'a', encoding="utf-8", newline='') as f:
-            if session['counter'] == 0:
+            if session[current_user.username] == 0:
                 print_header = True
             else:
                 print_header = False
 
             row.to_csv(f, header=print_header, index=False, encoding='utf-8')
 
-        session['counter'] += 1
-        if session['counter'] > len(df.index)-1:
+        session[current_user.username] += 1
+        if session[current_user.username] > len(df.index)-1:
             return redirect(url_for('.end', att_name=res_filename, orig_name=filename))
 
     if add_label_form.validate_on_submit() and add_label_form.add_lab.data:
@@ -263,13 +263,13 @@ def annotate_data():
         # Pass filename, colnames, and labels to annotate data view
         return redirect(url_for('.annotate_data', f_name=filename, colname=colname, labels=";".join(labels)))
 
-    if session['counter'] > len(df.index)-1:
+    if session[current_user.username] > len(df.index)-1:
         return redirect(url_for('.end', att_name=res_filename, orig_name=filename))
     else:
         # Show text for labelling within jumbotron
-        text = df.at[session['counter'], colname]
+        text = df.at[session[current_user.username], colname]
 
-    return render_template('annotate.html', form=form, add_label_form=add_label_form, text_string=text, length=session['counter']+1, total_length=df.shape[0], res_filename=res_filename, orig_filename=filename)
+    return render_template('annotate.html', form=form, add_label_form=add_label_form, text_string=text, length=session[current_user.username]+1, total_length=df.shape[0], res_filename=res_filename, orig_filename=filename)
 
 
 @frontend.route('/return_file', methods=['GET', 'POST'])
