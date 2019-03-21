@@ -2,13 +2,14 @@
 
 This flask app is a simple personal project (done by Andrew Tan[@a-tanman] and myself) that is meant to make it easier to label/annotate text data for creating datasets for supervised machine learning.
 
-Based on a flask-bootstrap template by Mark Brinkmann (https://pythonhosted.org/Flask-Bootstrap/). Most of the other features have been adapted from [Miguel's blog](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world). This app has been developed in a virtual environment in Windows and deployed in AWS using an Ubuntu MI.
+Based on a flask-bootstrap template by Mark Brinkmann (https://pythonhosted.org/Flask-Bootstrap/). Most of the other features have been adapted from [Miguel's blog](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world). This app has been developed in a virtual environment in Windows and deployed in [AWS using an Ubuntu MI](http://www.annotate-text.tk/).
 
 ### Installing Dependences
 
 This project requires Python 3x to be installed in the system. If your operating system does not provide you with a Python package, you can download an installer from the [Python official website](http://python.org/download/).
 
 This app is best used in a virtual environment. To create one in the project directory, type the following command in the terminal:
+
 ```$ python3 -m venv textannoenv```
 
 Note that in some operating systems you may need to use python3 instead of python in the command above.
@@ -28,39 +29,42 @@ Once the virtual environment has been activated, install the dependencies from r
 ###	Initialization
 As the app contains a user-registration feature, the user database needs to be initialized. Create the migration repository for annotator_app by running *flask db init* in the terminal window. You should see something like below:
 
-```(venv) $ flask db init
-  Creating directory /home/<user>/annotator_app/migrations ... done
-  Creating directory /home/<user>/annotator_app/migrations/versions ... done
-  Generating /home/<user>/annotator_app/migrations/alembic.ini ... done
-  Generating /home/<user>/annotator_app/migrations/env.py ... done
-  Generating /home/<user>/annotator_app/migrations/README ... done
-  Generating /home/<user>/annotator_app/migrations/script.py.mako ... done
-  Please edit configuration/connection/logging settings in
-  '/home/<user>/annotator_app/migrations/alembic.ini' before proceeding.```
+```
+(textannoenv) $ flask db init\
+  Creating directory /home/<user>/annotator_app/migrations ... done\
+  Creating directory /home/<user>/annotator_app/migrations/versions ... done\
+  Generating /home/<user>/annotator_app/migrations/alembic.ini ... done\
+  Generating /home/<user>/annotator_app/migrations/env.py ... done\
+  Generating /home/<user>/annotator_app/migrations/README ... done\
+  Generating /home/<user>/annotator_app/migrations/script.py.mako ... done\
+  Please edit configuration/connection/logging settings in\
+  '/home/<user>/annotator_app/migrations/alembic.ini' before proceeding.\
+ ```
 
 After you run this command, you will find a new migrations directory, with a few files and a versions sub-directory inside.
 
 With the migration repository in place, create the first database migration, which will include the users table that maps to the User database model. In this case, since there is no previous database, the automatic migration will add the entire User model to the migration script. The *flask db migrate* sub-command generates these automatic migrations:
 
-```(venv) $ flask db migrate -m "users table"
-INFO  [alembic.runtime.migration] Context impl SQLiteImpl.
-INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
-INFO  [alembic.autogenerate.compare] Detected added table 'user'
-INFO  [alembic.autogenerate.compare] Detected added index 'ix_user_email' on '['email']'
-INFO  [alembic.autogenerate.compare] Detected added index 'ix_user_username' on '['username']'
-  Generating /home/<user>/annotator_app/migrations/versions/e517276bb1c2_users_table.py ... done```
+```(textannoenv) $ flask db migrate -m "users table"\
+INFO  [alembic.runtime.migration] Context impl SQLiteImpl.\
+INFO  [alembic.runtime.migration] Will assume non-transactional DDL.\
+INFO  [alembic.autogenerate.compare] Detected added table 'user'\
+INFO  [alembic.autogenerate.compare] Detected added index 'ix_user_email' on '['email']'\
+INFO  [alembic.autogenerate.compare] Detected added index 'ix_user_username' on '['username']'\
+  Generating /home/<user>/annotator_app/migrations/versions/e517276bb1c2_users_table.py ... done\
+ ```
 
 ### Running
 
 Before running, Flask needs to be told how to import it, by setting the FLASK_APP environment variable:
 
-```(venv) $ export FLASK_APP=annotator_app.py````
+```(textannoenv) $ export FLASK_APP=annotator_app.py```
 
 If you are using Microsoft Windows, use set instead of export in the command above.
 
 You can run the app with the following command:
 
-```(venv) $ flask run```
+```(textannoenv) $ flask run```
 
 Open up your web browser and enter the following URL in the address field:
 
