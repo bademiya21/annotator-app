@@ -56,7 +56,24 @@ INFO  [alembic.autogenerate.compare] Detected added index 'ix_user_username' on 
 
 ### Running
 
-Before running, Flask needs to be told how to import it, by setting the FLASK_APP environment variable:
+You will need to create your own .env file which contains some configuration variables that need to be set. Just an example below:
+```
+SECRET_KEY = 52cb883e323b48d78a0a36e8e951ba4a
+SQLALCHEMY_DATABASE_URI = 'sqlite:///'
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+LOG_TO_STDOUT = <Path to store log files>
+MAIL_SERVER = localhost
+MAIL_PORT = 587
+MAIL_USE_TLS = 1
+MAIL_USERNAME = <username>
+MAIL_PASSWORD = <password>
+ADMINS = ['your-email@example.com']
+```
+SECRET_KEY is generally user-defined. The SECRET_KEY configuration variable is an important part in most Flask applications. Flask and some of its extensions use the value of the secret key as a cryptographic key, useful to generate signatures or tokens. The Flask-WTF extension uses it to protect web forms against a nasty attack called Cross-Site Request Forgery. As its name implies, the secret key is supposed to be secret, as the strength of the tokens and signatures generated with it depends on no person outside of the trusted maintainers of the application knowing it. To generate a random string for SECRET_KEY, you can use the following command:
+
+```python3 -c "import uuid; print(uuid.uuid4().hex)"```
+
+Flask needs to be told how to import it, by setting the FLASK_APP environment variable:
 
 ```(textannoenv) $ export FLASK_APP=annotator_app.py```
 
@@ -71,6 +88,10 @@ Open up your web browser and enter the following URL in the address field:
 ```http://localhost:5000/```
 
 Some mock data is found in the main folder for you to test out.
+
+### Deployment in Server Environment
+
+TO BE ADDED
 
 ### Key Features
 
