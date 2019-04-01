@@ -56,6 +56,8 @@ INFO  [alembic.autogenerate.compare] Detected added index 'ix_user_username' on 
 Alternatively, you can get the Docker container [here](https://cloud.docker.com/repository/docker/bademiya21/annotator_app). You can pull this container from the command line as follows:
 ```docker pull bademiya21/annotator_app```
 
+The Dockerfile is also provided here for users to tweak and create their own customized containers for the app.
+
 ### Running
 
 You will need to create your own .env file which contains some configuration variables that need to be set. Just an example below:
@@ -91,7 +93,7 @@ Open up your web browser and enter the following URL in the address field:
 
 Some mock data is found in the main folder for you to test out.
 
-If you are running the Docker file, simply run the following command at the terminal:
+If you are running the Docker container, simply run the following command at the terminal:
 ```docker run --name text-annotator -p 8000:5000 -e SECRET_KEY=<your-defined-key> -e MAIL_SERVER=<email-server> -e MAIL_PORT=<email-port> -e MAIL_USE_TLS=true -e MAIL_USERNAME=<email-username> -e MAIL_PASSWORD=<email-password> -e ADMINS=<email-for-text-annotator> bademiya21/annotator_app```
 where the variable enclosed in <> are defined by the person deploying the container.
 
