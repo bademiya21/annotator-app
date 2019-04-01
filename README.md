@@ -53,12 +53,6 @@ INFO  [alembic.autogenerate.compare] Detected added index 'ix_user_email' on '['
 INFO  [alembic.autogenerate.compare] Detected added index 'ix_user_username' on '['username']'\
   Generating /home/<user>/annotator_app/migrations/versions/e517276bb1c2_users_table.py ... done\
  ```
-<<<<<<< HEAD
-
-### Running
-
-Before running, Flask needs to be told how to import it, by setting the FLASK_APP environment variable:
-=======
 Alternatively, you can get the Docker container [here](https://cloud.docker.com/repository/docker/bademiya21/annotator_app). You can pull this container from the command line as follows:
 ```docker pull bademiya21/annotator_app```
 
@@ -84,7 +78,6 @@ SECRET_KEY is generally user-defined. The SECRET_KEY configuration variable is a
 ```python3 -c "import uuid; print(uuid.uuid4().hex)"```
 
 Flask needs to be told how to import it, by setting the FLASK_APP environment variable:
->>>>>>> 366789dfea0067ca83a10c83a54d80a2155c4661
 
 ```(textannoenv) $ export FLASK_APP=annotator_app.py```
 
@@ -95,12 +88,6 @@ You can run the app with the following command:
 ```(textannoenv) $ flask run```
 
 Open up your web browser and enter the following URL in the address field:
-<<<<<<< HEAD
-
-```http://localhost:5000/```
-
-Some mock data is found in the main folder for you to test out.
-=======
 
 ```http://localhost:5000/```
 
@@ -113,7 +100,6 @@ where the variable enclosed in <> are defined by the person deploying the contai
 ### Deployment in Server Environment
 
 TO BE ADDED
->>>>>>> 366789dfea0067ca83a10c83a54d80a2155c4661
 
 ### Key Features
 
