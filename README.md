@@ -53,6 +53,8 @@ INFO  [alembic.autogenerate.compare] Detected added index 'ix_user_email' on '['
 INFO  [alembic.autogenerate.compare] Detected added index 'ix_user_username' on '['username']'\
   Generating /home/<user>/annotator_app/migrations/versions/e517276bb1c2_users_table.py ... done\
  ```
+Alternatively, you can get the Docker container [here](https://cloud.docker.com/repository/docker/bademiya21/annotator_app). You can pull this container from the command line as follows:
+```docker pull bademiya21/annotator_app```
 
 ### Running
 
@@ -88,6 +90,10 @@ Open up your web browser and enter the following URL in the address field:
 ```http://localhost:5000/```
 
 Some mock data is found in the main folder for you to test out.
+
+If you are running the Docker file, simply run the following command at the terminal:
+```docker run -p 8000:5000 -e SECRET_KEY=<your-defined-key> -e MAIL_SERVER=<email-server> -e MAIL_PORT=<email-port> -e MAIL_USE_TLS=true -e MAIL_USERNAME=<email-username> -e MAIL_PASSWORD=<email-password> -e ADMINS=<email-for-text-annotator> bademiya21/annotator_app```
+where the variable enclosed in <> are defined by the person deploying the container.
 
 ### Deployment in Server Environment
 
